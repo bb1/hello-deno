@@ -13,5 +13,5 @@ users
   token *String
 
 @static
-folder dist
+folder build
 folder public
