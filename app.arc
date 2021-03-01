@@ -3,9 +3,14 @@ begin-app
 
 @http
 get /
+get /data
 
 @tables
-data
-  scopeID *String
-  dataID **String
-  ttl TTL
+users
+  username *String
+  password **String
+  token *String
+
+@static
+folder dist
+folder public
