@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { LoginForm } from './components/login-form';
 
 function App() {
-  const content = (<p>please login</p>);
+  const content = (<LoginForm onSubmit={console.log}></LoginForm>);
 
   return (
     <div className="App">
