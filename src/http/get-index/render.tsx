@@ -1,9 +1,9 @@
+// @deno-types="https://servestjs.org/@v1.1.7/types/react-dom/server/index.d.ts"
 import ReactDOMServer from 'https://dev.jspm.io/react-dom/server';
 import { React } from "https://unpkg.com/es-react";
 import { App } from './app.tsx';
 
 export async function render() {
-    // @ts-ignore
   let body = ReactDOMServer.renderToString(<App/>);
 
   return `<!DOCTYPE html>
