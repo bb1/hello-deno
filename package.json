@@ -6,6 +6,7 @@
   "scripts": {
     "start": "run-s cross-env",
     "cross-env": "cross-env NODE_ENV=testing sandbox",
+    "watch-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
