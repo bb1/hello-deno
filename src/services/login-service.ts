@@ -1,5 +1,5 @@
-import { SubmitInterface } from "../components/login-form";
+import { LoginCredentials } from '../types/types';
 
-export const login = async ({username, password} :SubmitInterface) => {
+export const login = async ({username, password} :LoginCredentials) => {
     return true;
 }

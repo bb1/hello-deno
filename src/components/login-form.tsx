@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Paper, Button, TextField, Grid, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { LoginCredentials } from '../types/types';
 
 export interface LoginFormInterface {
-  onSubmit: (credentials: SubmitInterface) => void;
+  onSubmit: (credentials: LoginCredentials) => void;
   loading: boolean;
-}
-
-export interface SubmitInterface {
-  username: string;
-  password: string;
 }
 
 const useStyles = makeStyles((theme) => ({
