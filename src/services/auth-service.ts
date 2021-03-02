@@ -23,3 +23,5 @@ export const login = async ({username, password} :LoginCredentials) => {
         return false;
     }
 }
+
+export const getAuthToken = () => TOKEN_CACHE;
