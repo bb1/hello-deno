@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-// import {  } from '@material-ui/core';
-import { LoginForm, SubmitInterface } from './components/login-form';
-import { login } from './services/login-service';
+import { LoginForm } from './components/login-form';
+import { login } from './services/auth-service';
 import logo from './logo.svg';
 import './App.css';
+import { LoginCredentials } from './types/types';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (credentials: SubmitInterface) => {
+  const handleLogin = async (credentials: LoginCredentials) => {
     setLoading(true);
     const success = await login(credentials);
     setLoggedIn(success);

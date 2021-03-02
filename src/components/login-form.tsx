@@ -36,7 +36,7 @@ export const LoginForm = ({ onSubmit, loading }: LoginFormInterface) => {
         </Grid>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item className={classes.item}>
-          <TextField label="password" onKeyDown={(ev: any) => setPassword(ev.target.value)} />
+          <TextField label="password" onKeyDown={(ev: any) => setPassword(ev.target.value)} type="password" />
           </Grid>
         </Grid>
         <Grid container wrap="nowrap" spacing={2}>

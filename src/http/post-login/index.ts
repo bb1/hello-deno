@@ -1,3 +1,4 @@
+// @ts-ignore
 import { ServerRequest } from "https://deno.land/std@0.89.0/http/server.ts";
 import { LoginCredentials, User } from "../../types/types";
 import { loginUser } from "../auth/auth-service";
