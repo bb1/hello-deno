@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { LoginForm } from './components/login-form';
 import { login } from './services/auth-service';
 import { LoginCredentials } from './types/types';
+import { Presentation } from './components/presentation';
+import { Button } from '@material-ui/core';
 
 import logo from './logo.svg';
 import './App.css';
@@ -9,6 +11,7 @@ import './App.css';
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [presentMode, setPresentMode] = useState(false);
 
   const handleLogin = async (credentials: LoginCredentials) => {
     setLoading(true);
@@ -23,12 +26,24 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <img src={logo} alt="logo" className="App-logo" />
-      </header>
+      {!presentMode && (
+        <header>
+          <img src={logo} alt="logo" className="App-logo" />
+        </header>
+      )}
+
       <main>
-        {!loggedIn && (<LoginForm onSubmit={handleLogin} loading={loading} />)}
+        {!loggedIn && !presentMode && (<LoginForm onSubmit={handleLogin} loading={loading} />)}
+        {presentMode && (<Presentation page={0}></Presentation>)}
       </main>
+
+      <footer>
+        <Button onClick={() => {
+          setPresentMode(!presentMode);
+        }}>
+          toggle presentation
+        </Button>
+      </footer>
     </div>
   );
 }
