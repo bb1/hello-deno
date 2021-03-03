@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Paper, Button, TextField, Grid, Typography } from '@material-ui/core';
+import { Paper, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ALL_PAGES } from '../data/presentation-pages';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     flexGrow: 1,
+  },
+  centered: {
+    textAlign: 'center',
+    flexGrow: 1,
+  },
+  img: {
+    height: '20rem',
   }
 }));
 
@@ -29,14 +36,14 @@ export const Presentation = ({ page: initPage }: PresentationInterface) => {
 
   useEffect(() => {
     setContent(ALL_PAGES[initPage]);
-  }, [page]);
+  }, [page, initPage]);
 
   // handler
   const prev = () => {
-    setPage(page => page--);
+    setPage(page => --page);
   };
   const next = () => {
-    setPage(page => page++);
+    setPage(page => ++page);
   }
 
   return (
@@ -59,16 +66,19 @@ export const Presentation = ({ page: initPage }: PresentationInterface) => {
             {content.points && content.points.map(p => (<li>{p}</li>))}
           </ul>
         </Grid>
+        {content.img && (
+          <Grid item>
+            <img src={content.img} alt="just for presentation" className={classes.img} />
+          </Grid>
+        )}
       </Grid>
       <Grid container wrap="nowrap" spacing={2}>
-        <Grid item className={classes.item}>
+        <Grid item className={classes.centered}>
           <Button color={'secondary'} onClick={prev} disabled={page <= 0}>
-            <NavigateNextIcon />
-          </Button>
-        </Grid>
-        <Grid item className={classes.item}>
-          <Button color={'primary'} onClick={next} disabled={page >= ALL_PAGES.length - 1}>
             <NavigateBeforeIcon />
+          </Button>
+          <Button color={'primary'} onClick={next} disabled={page >= ALL_PAGES.length - 1}>
+            <NavigateNextIcon />
           </Button>
         </Grid>
       </Grid>
