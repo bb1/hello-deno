@@ -22,8 +22,8 @@ export async function handler (request: ServerRequest) {
 
   try {
     const textBody = await readToText(request.body);
-    const credential = cred = JSON.parse(textBody) as LoginCredentials;
-    console.log(credential);
+    const credential = JSON.parse(textBody) as LoginCredentials;
+    cred = credential;
     user = await loginUser(credential);
   } catch (error) {}
 
@@ -35,8 +35,7 @@ export async function handler (request: ServerRequest) {
         'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
       },
       body: JSON.stringify({
-        error: 'INVALID CREDENTIALS!',
-        data: cred,
+        error: 'INVALID CREDENTIALS: ' + JSON.stringify(cred),
       })
     };
   }
