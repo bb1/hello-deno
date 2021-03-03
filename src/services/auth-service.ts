@@ -6,6 +6,9 @@ export const login = async ({username, password} :LoginCredentials) => {
     try {
         const response = await fetch('/login', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf8'
+            },
             body: JSON.stringify({
                 username,
                 password,
