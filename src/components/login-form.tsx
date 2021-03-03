@@ -31,12 +31,12 @@ export const LoginForm = ({ onSubmit, loading }: LoginFormInterface) => {
       <form onSubmit={triggerSubmit} >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item className={classes.item}>
-            <TextField label="username" onKeyDown={(ev: any) => setUsername(ev.target.value)} />
+            <TextField label="username" onKeyUp={(ev: any) => setUsername(ev.target.value)} />
           </Grid>
         </Grid>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item className={classes.item}>
-          <TextField label="password" onKeyDown={(ev: any) => setPassword(ev.target.value)} type="password" />
+          <TextField label="password" onKeyUp={(ev: any) => setPassword(ev.target.value)} type="password" />
           </Grid>
         </Grid>
         <Grid container wrap="nowrap" spacing={2}>
