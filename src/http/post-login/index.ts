@@ -8,7 +8,7 @@ import { loginUser } from "./auth-service.ts";
 const textDecoder = new TextDecoder();
 
 // @ts-ignore
-export async function readToTextWithLimit(body: Deno.Reader, limit?: number) {
+export async function readToText(body: Deno.Reader) {
   // @ts-ignore
   const textBody = textDecoder.decode(await Deno.readAll(body));
 
@@ -18,10 +18,12 @@ export async function readToTextWithLimit(body: Deno.Reader, limit?: number) {
 
 export async function handler (request: ServerRequest) {
   let user: User | undefined;
+  let cred;
 
   try {
-    const textBody = await readToTextWithLimit(request.body);
-    const credential = JSON.parse(textBody) as LoginCredentials;
+    const textBody = await readToText(request.body);
+    const credential = cred = JSON.parse(textBody) as LoginCredentials;
+    console.log(credential);
     user = await loginUser(credential);
   } catch (error) {}
 
@@ -32,7 +34,10 @@ export async function handler (request: ServerRequest) {
         'content-type': 'application/json; charset=utf8',
         'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
       },
-      body: 'INVALID CREDENTIALS!'
+      body: JSON.stringify({
+        error: 'INVALID CREDENTIALS!',
+        data: cred,
+      })
     };
   }
 
