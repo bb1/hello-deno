@@ -36,15 +36,15 @@ export const LoginForm = ({ onSubmit, loading }: LoginFormInterface) => {
         </Grid>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item className={classes.item}>
-          <TextField label="password" onKeyUp={(ev: any) => setPassword(ev.target.value)} type="password" />
+            <TextField label="password" onKeyUp={(ev: any) => setPassword(ev.target.value)} type="password" />
           </Grid>
         </Grid>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item className={classes.item}>
-          <Button color={!loading ? 'primary' : 'default'} onClick={triggerSubmit} variant="contained" disabled={loading}>
-            {!loading && 'Login'}
-            {loading && (<CircularProgress color="primary"/>)}
-          </Button>
+            <Button color={!loading ? 'primary' : 'default'} onClick={triggerSubmit} variant="contained" disabled={loading}>
+              {!loading && 'Login'}
+              {loading && (<CircularProgress color="primary" />)}
+            </Button>
           </Grid>
         </Grid>
       </form>

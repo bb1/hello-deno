@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { LoginForm } from './components/login-form';
 import { login } from './services/auth-service';
+import { LoginCredentials } from './types/types';
+
 import logo from './logo.svg';
 import './App.css';
-import { LoginCredentials } from './types/types';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);

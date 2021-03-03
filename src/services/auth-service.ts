@@ -19,12 +19,13 @@ export const login = async ({username, password} :LoginCredentials) => {
         // TODO: better safe it in localStorage / Cookie etc.
         TOKEN_CACHE = token;
         
-        return true;
+        if (token) {
+            return true;
+        }
     } catch (err) {
         console.error(err);
-
-        return false;
     }
+    return false;
 }
 
 export const getAuthToken = () => TOKEN_CACHE;
