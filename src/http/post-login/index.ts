@@ -1,12 +1,27 @@
 // @ts-ignore
 import { ServerRequest } from "https://deno.land/std@0.89.0/http/server.ts";
-import { LoginCredentials, User } from "../../types/types";
-import { loginUser } from "../auth/auth-service";
+// @ts-ignore
+import { LoginCredentials, User } from "./types.ts";
+// @ts-ignore
+import { loginUser } from "./auth-service.ts";
+
+const textDecoder = new TextDecoder();
+
+// @ts-ignore
+export async function readToTextWithLimit(body: Deno.Reader, limit?: number) {
+  // @ts-ignore
+  const textBody = textDecoder.decode(await Deno.readAll(body));
+
+  return textBody;
+}
+
 
 export async function handler (request: ServerRequest) {
   let user: User | undefined;
+
   try {
-    const credential = (await request.body()).value as LoginCredentials;
+    const textBody = await readToTextWithLimit(request.body);
+    const credential = JSON.parse(textBody) as LoginCredentials;
     user = await loginUser(credential);
   } catch (error) {}
 
