@@ -8,4 +8,3 @@ post /login
 
 @static
 folder build
-folder public
