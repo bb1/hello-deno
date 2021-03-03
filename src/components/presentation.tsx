@@ -35,8 +35,8 @@ export const Presentation = ({ page: initPage }: PresentationInterface) => {
   const [content, setContent] = useState(ALL_PAGES[initPage]);
 
   useEffect(() => {
-    setContent(ALL_PAGES[initPage]);
-  }, [page, initPage]);
+    setContent(ALL_PAGES[page]);
+  }, [page]);
 
   // handler
   const prev = () => {
@@ -63,7 +63,9 @@ export const Presentation = ({ page: initPage }: PresentationInterface) => {
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item className={classes.item}>
           <ul>
-            {content.points && content.points.map(p => (<li>{p}</li>))}
+            {content.points && content.points.map((p, idx) => (
+              <li key={idx}>{p.startsWith('https://') ? (<a href={p}>{p}</a>) : p}</li>
+            ))}
           </ul>
         </Grid>
         {content.img && (
@@ -74,9 +76,10 @@ export const Presentation = ({ page: initPage }: PresentationInterface) => {
       </Grid>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item className={classes.centered}>
-          <Button color={'secondary'} onClick={prev} disabled={page <= 0}>
+          <Button color={'primary'} onClick={prev} disabled={page <= 0}>
             <NavigateBeforeIcon />
           </Button>
+          {page}
           <Button color={'primary'} onClick={next} disabled={page >= ALL_PAGES.length - 1}>
             <NavigateNextIcon />
           </Button>
